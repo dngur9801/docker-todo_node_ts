@@ -7,10 +7,11 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="" id="submit">
+    <form action="/regist" id="submit" method="POST">
+      <p>오늘의 할일 :<span id="num"></span></p>
       <div>
-        <span>오늘의 할일 : </span>
-        <input type="text" id="todo_text" />
+        <span>할일 입력 : </span>
+        <input type="text" id="todo_text" name="content" />
         <input type="submit" value="입력" />
       </div>
     </form>

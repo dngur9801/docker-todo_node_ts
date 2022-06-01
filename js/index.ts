@@ -1,25 +1,17 @@
-document.querySelector('#submit')?.addEventListener('submit', event => {
-  event.preventDefault();
-  registWrite();
-});
-async function registWrite() {
+async function registWrite(): Promise<void> {
   const input = document.querySelector('#todo_text') as HTMLInputElement;
-  const datas: object = await fetch('/regist', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      content: input.value,
-    }),
-  }).then(response => response.json());
+  const datas: object = await fetch('/todoData').then(response =>
+    response.json()
+  );
   input.value = '';
   input.focus();
   viewTodoData(datas);
 }
+registWrite();
 
-function viewTodoData(datas: any) {
+function viewTodoData(datas: any): void {
   console.log(datas);
+  document.querySelector('#num')!.innerHTML = datas.length;
   const todoList = document.querySelector('#todolists');
   if (todoList instanceof Element) {
     let list = '';

@@ -7,30 +7,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var _a;
-(_a = document.querySelector('#submit')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', event => {
-    event.preventDefault();
-    registWrite();
-});
 function registWrite() {
     return __awaiter(this, void 0, void 0, function* () {
         const input = document.querySelector('#todo_text');
-        const datas = yield fetch('/regist', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                content: input.value,
-            }),
-        }).then(response => response.json());
+        const datas = yield fetch('/todoData').then(response => response.json());
         input.value = '';
         input.focus();
         viewTodoData(datas);
     });
 }
+registWrite();
 function viewTodoData(datas) {
     console.log(datas);
+    document.querySelector('#num').innerHTML = datas.length;
     const todoList = document.querySelector('#todolists');
     if (todoList instanceof Element) {
         let list = '';
