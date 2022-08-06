@@ -7,12 +7,15 @@ app.use('/js', express.static(__dirname + '/js'));
 
 const todoList = [];
 
-app.listen(8080, () => {
-  console.log('listening on 8080');
+app.listen(3000, () => {
+  console.log('listening on 3000');
 });
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
+});
+app.get('/test', (req, res) => {
+  res.send('gdgd');
 });
 
 app.get('/todoData', (req, res) => {
